@@ -6,6 +6,9 @@ This repository contains a 2D survival game developed using the GDQuest video tu
 
 The game is a 2D survival game where slimes attack the player. A gun rotates around the player and automatically shoots any enemies that come within proximity. Players can control the character using either the WASD keys or arrow keys. The objective of the game is to survive for as long as possible.
 
+**Highest Score:**
+- My highest score was 230 mobs killed and 353 mobs spawned.
+
 ![image](https://github.com/FahimIslam2410/2D-Slime-Shooters/assets/120402745/62b62e29-e298-4866-8283-92ff41732062)
 
 
@@ -51,3 +54,11 @@ The game is a 2D survival game where slimes attack the player. A gun rotates aro
 
 4. **Powerup Expiry Time:**
    - Add an expiry time to the powerups, providing a time limit for their effects.
+
+5. **Mob Variety:**
+   - Add more types of mobs.
+   - Introduce mobs with different abilities, such as faster movement or increased health.
+
+## Exported Game:
+
+In this repository, I have uploaded a zip file containing the exported game. Simply unzip the file and open the "2D Slime Shooters.exe" to start playing. Enjoy!
