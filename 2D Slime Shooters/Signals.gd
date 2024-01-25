@@ -1,0 +1,5 @@
+extends Node
+
+signal MobDeaths
+signal FasterShootingPowerUp
+signal FasterShootingCooldown

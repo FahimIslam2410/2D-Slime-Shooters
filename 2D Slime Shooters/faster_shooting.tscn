@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://cus6v5i2dm4w8"]
+
+[ext_resource type="Script" path="res://faster_shooting.gd" id="1_h5c6e"]
+[ext_resource type="Texture2D" uid="uid://b4s723exxp67a" path="res://Blink (42x42).png" id="2_l2sah"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gugjn"]
+atlas = ExtResource("2_l2sah")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bput4"]
+atlas = ExtResource("2_l2sah")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckmh6"]
+atlas = ExtResource("2_l2sah")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byau4"]
+atlas = ExtResource("2_l2sah")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7f6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gugjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bput4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckmh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byau4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xny75"]
+size = Vector2(85, 85)
+
+[node name="FasterShootingPowerup" type="Area2D"]
+script = ExtResource("1_h5c6e")
+
+[node name="PowerupSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -36)
+scale = Vector2(2.64286, 2.64286)
+sprite_frames = SubResource("SpriteFrames_x7f6t")
+autoplay = "default"
+frame_progress = 0.878857
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -36.5)
+shape = SubResource("RectangleShape2D_xny75")
+
+[node name="PowerUpCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PowerUpCooldownTimer" to="." method="_on_power_up_cooldown_timer_timeout"]

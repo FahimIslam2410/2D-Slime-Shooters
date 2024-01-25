@@ -1,0 +1,179 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvnoktriutyp1"]
+
+[ext_resource type="PackedScene" uid="uid://cxrfobklqikl3" path="res://player.tscn" id="1_42pr7"]
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_hf0vg"]
+[ext_resource type="PackedScene" uid="uid://bon8kopgbn3ea" path="res://pine_tree.tscn" id="2_dik8v"]
+
+[sub_resource type="Curve2D" id="Curve2D_qgx02"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1332, -148, 0, 0, 0, 0, 1492, 100, 0, 0, 0, 0, 1282, 396, 0, 0, 0, 0, 1442, 576, 0, 0, 0, 0, 1328, 816, 0, 0, 0, 0, 854, 996, 0, 0, 0, 0, 480, 772, 0, 0, 0, 0, 14, 894, 0, 0, 0, 0, -206, 810, 0, 0, 0, 0, -321, 512, 0, 0, 0, 0, -125, 28, 0, 0, 0, 0, -200, -144, 0, 0, 0, 0, 72, -178, 0, 0, 0, 0, 290, -102, 0, 0, 0, 0, 712, -216, 0, 0, 0, 0, 864, -100, 0, 0, 0, 0, 1168, -110, 0, 0, 0, 0, 1296, -44, 0, 0, 0, 0, 1332, -148)
+}
+point_count = 19
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_hf0vg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" parent="." instance=ExtResource("1_42pr7")]
+position = Vector2(541, 353)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-581, -369)
+curve = SubResource("Curve2D_qgx02")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(1332, -148)
+rotation = 0.99783
+
+[node name="PowerUp" type="Path2D" parent="Player"]
+position = Vector2(372, -603)
+rotation = 1.55896
+curve = SubResource("Curve2D_qgx02")
+
+[node name="PowerUpFollow" type="PathFollow2D" parent="Player/PowerUp"]
+unique_name_in_owner = true
+position = Vector2(1332, -148)
+rotation = 0.99783
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.337255)
+
+[node name="GameOverLabel" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = -166.0
+offset_right = 404.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 149
+text = "Game Over"
+
+[node name="QuitButton" type="Button" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = 71.0
+offset_right = 116.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="PausedScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PausedScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.337255)
+
+[node name="PausedLabel" type="Label" parent="PausedScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -163.0
+offset_right = 493.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 149
+text = "Game Paused"
+
+[node name="Resume" type="Button" parent="PausedScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = 71.0
+offset_right = 222.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Press to resume the game"
+theme_override_font_sizes/font_size = 64
+text = "Resume game"
+
+[node name="PineTree7" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(1008, 147)
+metadata/_edit_lock_ = true
+
+[node name="PineTree" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(189, 227)
+metadata/_edit_lock_ = true
+
+[node name="PineTree2" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(240, 268)
+metadata/_edit_lock_ = true
+
+[node name="PineTree3" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(861, 457)
+metadata/_edit_lock_ = true
+
+[node name="PineTree4" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(228, 509)
+metadata/_edit_lock_ = true
+
+[node name="PineTree5" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(879, 162)
+metadata/_edit_lock_ = true
+
+[node name="PineTree6" parent="." instance=ExtResource("2_dik8v")]
+position = Vector2(946, 213)
+metadata/_edit_lock_ = true
+
+[node name="PowerupTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="mob_spawned" from="." to="Player" method="_on_game_mob_spawned"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PausedScreen/Resume" to="." method="_on_resume_pressed"]
+[connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]
